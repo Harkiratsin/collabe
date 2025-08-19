@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: linear-gradient(
+          270deg,
+          #f8f8f0,
+          #efce12,
+          #f8f8f0,
+          #757673,
+          #f8f8f0
+        );
+        background-size: 200% 200%;
+        background-repeat: no-repeat;
+        background-position: 0% 50%;
+        animation: gradientBG 10s ease infinite;
+      }
+
+      .mob-psycho-animate {
+        display: block;
+        position: fixed;
+        left: -150px;
+        max-width: 150px;
+        width: 150px;
+        height: auto;
+        z-index: -1;
+        opacity: 1;
+      }
+      .mob-zigzag-1 {
+        top: 0vh;
+        left: 0vw;
+      }
+      .mob-zigzag-2 {
+        top: 0vh;
+        left: 90vw;
+      }
+      .mob-zigzag-3 {
+        top: 90vh;
+        left: 0vw;
+      }
+      .mob-zigzag-4 {
+        top: 90vh;
+        left: 90vw;
+      }
+      .mob-zigzag-5 {
+        top: 0vh;
+        left: 45vw;
+      }
+      .mob-zigzag-6 {
+        top: 90vh;
+        left: 45vw;
+      }
+      .mob-zigzag-7 {
+        top: 45vh;
+        left: 0vw;
+      }
+      .mob-zigzag-8 {
+        top: 45vh;
+        left: 90vw;
+      }
+      .mob-zigzag-9 {
+        top: 0vh;
+        left: 75vw;
+      }
+
+      @keyframes mobVertical {
+        0% {
+          top: -150px;
+          left: 0;
+        }
+        90% {
+          top: 100vh;
+          left: 0;
+        }
+        91% {
+          top: -150px;
+          left: 0;
+        }
+        100% {
+          top: -150px;
+          left: 0;
+        }
+      }
+
+      @keyframes mobFade {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        85% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Animate the gradient background smoothly */
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+    <title>website lol2</title>
+  </head>
+  <body>
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-1"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-2"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-3"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-4"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-5"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-6"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-7"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-8"
+    />
+    <img
+      src="images/Mob-Psycho-100-Reigen-Arataka-removebg-preview.png"
+      alt="Mob Psycho"
+      class="mob-psycho-animate mob-zigzag-9"
+    />
+    <!--hi-->
+    <script>
+      const images = Array.from(
+        document.querySelectorAll(".mob-psycho-animate")
+      );
+      const SIZE = 150; // image size
+
+      // Spawn from edges or corners, velocity aimed inward
+      function randomEdgeSpawn(forbiddenEdge = -1) {
+        let edge;
+        do {
+          edge = Math.floor(Math.random() * 8); // 0=left,1=right,2=top,3=bottom, 4-7 = corners
+        } while (edge === forbiddenEdge);
+
+        let x, y, vx, vy;
+        const speed = 2.1 * 3; // varied speed
+
+        switch (edge) {
+          case 0: // left
+            x = -SIZE;
+            y = Math.random() * (window.innerHeight - SIZE);
+            vx = speed;
+            vy = (Math.random() - 0.5) * speed;
+            break;
+          case 1: // right
+            x = window.innerWidth;
+            y = Math.random() * (window.innerHeight - SIZE);
+            vx = -speed;
+            vy = (Math.random() - 0.5) * speed;
+            break;
+          case 2: // top
+            x = Math.random() * (window.innerWidth - SIZE);
+            y = -SIZE;
+            vx = (Math.random() - 0.5) * speed;
+            vy = speed;
+            break;
+          case 3: // bottom
+            x = Math.random() * (window.innerWidth - SIZE);
+            y = window.innerHeight;
+            vx = (Math.random() - 0.5) * speed;
+            vy = -speed;
+            break;
+          case 4: // top-left
+            x = -SIZE;
+            y = -SIZE;
+            vx = speed;
+            vy = speed;
+            break;
+          case 5: // top-right
+            x = window.innerWidth;
+            y = -SIZE;
+            vx = -speed;
+            vy = speed;
+            break;
+          case 6: // bottom-left
+            x = -SIZE;
+            y = window.innerHeight;
+            vx = speed;
+            vy = -speed;
+            break;
+          case 7: // bottom-right
+            x = window.innerWidth;
+            y = window.innerHeight;
+            vx = -speed;
+            vy = -speed;
+            break;
+        }
+        return { x, y, vx, vy, edge };
+      }
+
+      // assign each image a starting position + velocity
+      const movers = images.map(() => randomEdgeSpawn());
+
+      // move loop
+      function animate() {
+        movers.forEach((mob, i) => {
+          mob.x += mob.vx;
+          mob.y += mob.vy;
+
+          const img = images[i];
+          img.style.left = mob.x + "px";
+          img.style.top = mob.y + "px";
+
+          // if it goes fully out of bounds → respawn at new random edge/corner
+          if (
+            mob.x < -SIZE * 2 ||
+            mob.x > window.innerWidth + SIZE * 2 ||
+            mob.y < -SIZE * 2 ||
+            mob.y > window.innerHeight + SIZE * 2
+          ) {
+            movers[i] = randomEdgeSpawn(mob.edge); // avoid same edge twice
+          }
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
